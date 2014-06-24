@@ -30,11 +30,33 @@
         </div>
         <input type="submit" name="btnAjax" value="simpan" id="btnAjax" class="btn btn-primary">
       </form>
+      <div id="ajaxResult"></div>
     </div>
-
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+      $('#ajaxForm').submit(function(e){
+        var postData = $(this).serializeArray();
+        var postURL = $(this).attr("action");
+
+        $.ajax({
+          url:postURL,
+          type:"POST",
+          data:postData,
+          success:function(msg){
+            $("#ajaxResult").append(msg);
+            $('#ajaxForm')[0].reset();
+          },
+          error:function(msg){
+            $("#ajaxResult").append(msg)
+          }
+        });
+
+        e.preventDefault();
+      });
+    </script>
   </body>
 </html>

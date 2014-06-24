@@ -1,3 +1,3 @@
 <?php 
-echo $_POST['inputAjax'];
+echo $_POST['inputAjax']."<br>";
  ?>
