@@ -21,6 +21,9 @@
   .form-group{
     width: 30%;
   }
+  .ajaxLoading{
+   height:20px; width:100%; clear:both;
+  }
   </style>
     <div class="container">
     <h1>Ajax practice</h1>
@@ -30,7 +33,8 @@
         </div>
         <input type="submit" name="btnAjax" value="simpan" id="btnAjax" class="btn btn-primary">
       </form>
-      <div id="ajaxResult"></div>
+      <div class="ajaxLoading"></div>
+      <div id="ajaxResult">Hasil:<br></div>
     </div>
   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -41,7 +45,7 @@
       $('#ajaxForm').submit(function(e){
         var postData = $(this).serializeArray();
         var postURL = $(this).attr("action");
-
+        $(".ajaxLoading").html("<img src='images/loading.gif'>");
         $.ajax({
           url:postURL,
           type:"POST",
@@ -49,6 +53,7 @@
           success:function(msg){
             $("#ajaxResult").append(msg);
             $('#ajaxForm')[0].reset();
+             $(".ajaxLoading").html("");
           },
           error:function(msg){
             $("#ajaxResult").append(msg)
