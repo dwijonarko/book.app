@@ -32,7 +32,7 @@
         </div>
       </form>
       <div class="ajaxLoading"></div>
-      <div id="ajaxResult">Hasil:<br></div>
+      <div id="ajaxResult">Hasil :<br></div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -58,7 +58,7 @@
           }
         });        
       }else{
-        $("#ajaxResult").html("");
+        $("#ajaxResult").html("Hasil :");
       }
 
     });
