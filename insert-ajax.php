@@ -27,7 +27,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
     <div class="col-md-8">  <fieldset>
     <legend>Form Input Buku</legend>
   
-  <form action="ajaxSave.php" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal" id="ajaxForm">
+  <form action="save.php" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal" id="ajaxForm">
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">

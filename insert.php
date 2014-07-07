@@ -68,7 +68,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
   </form>
 </fieldset>
 <div class="ajaxLoading"></div>
-<div id="ajaxResult"></div>
+<div id="ajaxResult">
 <fieldset>
   <legend>Daftar Buku</legend>
 
@@ -157,6 +157,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
   ?>
   </table>
   </fieldset>
+  </div>
 </div>
     <div class="col-md-2"></div>
   </div>
