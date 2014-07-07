@@ -26,7 +26,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
     <div class="col-md-8">  <fieldset>
     <legend>Form Input Buku</legend>
   
-  <form action="" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal">
+  <form action="save.php" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal" id="ajaxForm">
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
@@ -67,7 +67,8 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
   </div>
   </form>
 </fieldset>
-
+<div class="ajaxLoading"></div>
+<div id="ajaxResult"></div>
 <fieldset>
   <legend>Daftar Buku</legend>
 
@@ -162,6 +163,32 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
   </div>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script>
+  $('#ajaxForm').submit(function(e){
+      var postData = new FormData(this);
+      var postURL = $(this).attr("action");
+      $(".ajaxLoading").html("<img src='images/loading.gif'>");
+
+      $.ajax({
+        url:postURL,
+        type:"POST",
+        data:postData,
+        mimeType:"multipart/form-data",
+        contentType:false,
+        cache:false,
+        processData:false,
+        success:function(msg){
+            $("#ajaxResult").html(msg);
+            $("#ajaxForm")[0].reset();
+            $(".ajaxLoading").html(""); 
+        },error:function(msg){
+            $("#ajaxResult").html(msg);
+        }
+      });
+      
+    e.preventDefault();
+  });
+  </script>
   </body>
 </html>
 

@@ -26,9 +26,9 @@
   </style>
     <div class="container">
     <h1>Ajax practice</h1>
-      <form action="save.php" class="form-inline" role="form" id="ajaxForm">
+      <form action="searchAjax.php" class="form-inline" role="form" id="ajaxForm">
         <div class="form-group">
-          <input type="text" name="inputAjax" id="inputAjax"  placeholder="Insert your name here" class="form-control">
+          <input type="text" name="inputAjax" id="inputAjax"  placeholder="Insert books title here" class="form-control">
         </div>
       </form>
       <div class="ajaxLoading"></div>
@@ -54,13 +54,13 @@
             $(".ajaxLoading").html("");
           },
           error:function(msg){
-            $("#ajaxResult").append(msg)
-          }
+            $("#ajaxResult").html(msg);
+          },
+          async:true
         });        
       }else{
         $("#ajaxResult").html("Hasil :");
       }
-
     });
     </script>
   </body>

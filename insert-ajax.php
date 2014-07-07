@@ -19,6 +19,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
     </style>
   </head>
   <body>
+
   <div class="container">
   <?php include "navbar.php" ?>
   <div class="row">
@@ -71,6 +72,12 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
 <div id="ajaxResult">
 <fieldset>
   <legend>Daftar Buku</legend>
+    <form action="searchAjax.php" class="form-inline" role="form" id="ajaxSearchForm">
+    <div class="form-group">
+      <input type="text" name="inputAjax" id="inputSearchAjax"  placeholder="Insert books title here" class="form-control">
+    </div>
+  </form>
+  <div id="ajaxSearchResult">
   <table class="table table-condensed table-hover">
   <tr>
     <th>ID</th>
@@ -109,6 +116,7 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
 
   ?>
   </table>
+  </div>
   </div>
   </fieldset>
 </div>
@@ -153,6 +161,26 @@ if (isset($_SESSION['login'])&& $_SESSION['login']==true) {
 
         e.preventDefault();
       });
+
+    $("#inputSearchAjax").keyup(function(){
+        var formData = $("#inputSearchAjax").val();
+        var formAction = $("#ajaxSearchForm").attr("action");
+        $(".ajaxLoading").html("<img src='images/loading.gif'>");
+        $.ajax({
+          url:formAction,
+          type:"GET",
+          data:"q="+formData,
+          success:function(msg){
+            $("#ajaxSearchResult").html(msg);
+            $(".ajaxLoading").html("");
+          },
+          error:function(msg){
+            $("#ajaxResult").html(msg);
+          },
+          async:true
+        });        
+    });
+
   </script>
   </body>
 </html>

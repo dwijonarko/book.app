@@ -53,7 +53,7 @@
           success:function(msg){
             $("#ajaxResult").append(msg);
             $('#ajaxForm')[0].reset();
-             $(".ajaxLoading").html("");
+            $(".ajaxLoading").html("");
           },
           error:function(msg){
             $("#ajaxResult").append(msg)
